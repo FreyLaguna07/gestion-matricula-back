@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gestion.matricula.mapper.PerfilMapper">
+
+	<resultMap id="listPerfil" type="com.gestion.matricula.outputDto.PerfilOutputDto">
+		<result property="idPerfil" column="id_perfil" />
+		<result property="nombre" column="nombre" />
+		<result property="detalle" column="detalle" />
+		<result property="estado" column="estado" />
+		<result property="fchCreacion" column="fch_creacion" />
+		<result property="fchActualizacion" column="fch_actualizacion" />
+	</resultMap>
+	
+	<select id="listPerfil" statementType="CALLABLE"
+			resultMap="listPerfil">
+		{CALL sp_perfil_list(
+		)
+		}
+	</select>
+</mapper>
