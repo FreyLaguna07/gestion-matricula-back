@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gestion.matricula.mapper.UsuarioMapper">
+
+	<insert id="insert" parameterType="com.gestion.matricula.inputDto.UsuarioInputDto" statementType="CALLABLE">
+		{ CALL  sp_tb_usuario_insert(
+			#{codPerfil, jdbcType = VARCHAR, mode = IN},
+			#{idPerfil, jdbcType = INTEGER, mode = IN},
+			#{nombre, jdbcType = VARCHAR, mode = IN},
+			#{apPaterno, jdbcType = VARCHAR, mode = IN},
+			#{apMaterno, jdbcType = VARCHAR, mode = IN},
+			#{nroDni, jdbcType = VARCHAR, mode = IN},
+			#{fchNacimiento, jdbcType = VARCHAR, mode = IN},
+			#{sexo, jdbcType = VARCHAR, mode = IN},
+			#{idApoderado, jdbcType = INTEGER, mode = IN},
+			#{nroTelefono, jdbcType = VARCHAR, mode = IN},
+			#{tipoOperador, jdbcType = VARCHAR, mode = IN},
+			#{codOperador, jdbcType = VARCHAR, mode = IN},
+			#{correo, jdbcType = VARCHAR, mode = IN},
+			#{copiDni, jdbcType = VARCHAR, mode = IN},
+			#{copiPartidaNacimiento, jdbcType = VARCHAR, mode = IN},
+			#{foto, jdbcType = VARCHAR, mode = IN},
+			#{direccion, jdbcType = VARCHAR, mode = IN},
+			#{idCurso, jdbcType = INTEGER, mode = IN},
+			#{codError, jdbcType = INTEGER, mode = OUT},
+			#{msgError, jdbcType = VARCHAR, mode = OUT}
+			)
+		}
+	</insert>
+	
+	
+	<resultMap id="listUsuarioDto" type="com.gestion.matricula.outputDto.ListUsuarioOutputDto">
+		<result property="idUsuario" column="id_usuario" />
+		<result property="nomUsuario" column="nombre" />
+		<result property="apPaternoUsuario" column="ap_paterno" />
+		<result property="apMaternoUsuario" column="ap_materno" />
+		<result property="nroDniUsuario" column="nro_dni" />
+		<result property="fchNacimeintoUsuario" column="fch_nacimiento" />
+		<result property="sexo" column="sexo" />
+		<result property="idPerfil" column="id_perfil" />
+		<result property="tipousuario" column="tipo_usuario" />
+		<result property="codPerfil" column="cod_perfil" />
+		<result property="detalle" column="detalle" />
+		<result property="idDetalle" column="id_detalle" />
+		<result property="copiDni" column="copi_dni" />
+		<result property="copiPartidaNacimiento" column="copi_partida_nacimiento" />
+		<result property="foto" column="foto" />
+		<result property="idContacto" column="id_contacto" />
+		<result property="nroTelefono" column="nro_telefono" />
+		<result property="tipoOperador" column="tipo_operador" />
+		<result property="codOperador" column="cod_operador" />
+		<result property="correo" column="correo" />
+		<result property="idApoderado" column="id_apoderado" />
+		<result property="nomApoderado" column="nom_apoderado" />
+		<result property="apPaternoApoderado" column="ap_paterno_apoderado" />
+		<result property="apMaternoApoderado" column="ap_materno_apoderado" />
+		<result property="nroDniApoderado" column="nro_dni_apoderado" />
+		<result property="telefonoApooderado" column="telefono_apoderado" />
+		<result property="codOperadorApoderado" column="cod_operador_apoderado" />
+		<result property="direccion" column="direccion" />
+		
+	</resultMap>
+	<select id="list" parameterType="com.gestion.matricula.inputDto.SearchUsuarioInputDto" statementType="CALLABLE" resultMap="listUsuarioDto">
+		{CALL sp_tb_usuario_list(
+			#{codPerfil, jdbcType = VARCHAR, mode = IN},
+			#{nroDni, jdbcType = VARCHAR, mode = IN},
+			#{nombre, jdbcType = VARCHAR, mode = IN},
+			#{apPaterno, jdbcType = VARCHAR, mode = IN},
+			#{apMaterno, jdbcType = VARCHAR, mode = IN},
+			#{fchInicio, jdbcType = VARCHAR, mode = IN},
+			#{fchFin, jdbcType = VARCHAR, mode = IN}
+		)
+		}
+	</select>
+	
+	<update id="update" parameterType="com.gestion.matricula.inputDto.UsuarioInputDto" statementType="CALLABLE">
+		{ CALL  sp_tb_usuario_update(
+			#{idUsuario, jdbcType = INTEGER, mode = IN},
+			#{codPerfil, jdbcType = VARCHAR, mode = IN},
+			#{idPerfil, jdbcType = INTEGER, mode = IN},
+			#{nombre, jdbcType = VARCHAR, mode = IN},
+			#{apPaterno, jdbcType = VARCHAR, mode = IN},
+			#{apMaterno, jdbcType = VARCHAR, mode = IN},
+			#{nroDni, jdbcType = VARCHAR, mode = IN},
+			#{fchNacimiento, jdbcType = VARCHAR, mode = IN},
+			#{sexo, jdbcType = VARCHAR, mode = IN},
+			#{idApoderado, jdbcType = INTEGER, mode = IN},
+			#{idContacto, jdbcType = INTEGER, mode = IN},
+			#{nroTelefono, jdbcType = VARCHAR, mode = IN},
+			#{tipoOperador, jdbcType = VARCHAR, mode = IN},
+			#{codOperador, jdbcType = VARCHAR, mode = IN},
+			#{correo, jdbcType = VARCHAR, mode = IN},
+			#{idDetalle, jdbcType = INTEGER, mode = IN},
+			#{copiDni, jdbcType = VARCHAR, mode = IN},
+			#{copiPartidaNacimiento, jdbcType = VARCHAR, mode = IN},
+			#{foto, jdbcType = VARCHAR, mode = IN},
+			#{direccion, jdbcType = VARCHAR, mode = IN},
+			#{idCurso, jdbcType = INTEGER, mode = IN},
+			#{codError, jdbcType = INTEGER, mode = OUT},
+			#{msgError, jdbcType = VARCHAR, mode = OUT}
+			)
+		}
+	</update>
+</mapper>
+

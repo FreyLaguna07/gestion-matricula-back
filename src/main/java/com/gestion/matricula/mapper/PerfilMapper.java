@@ -9,5 +9,5 @@ import com.gestion.matricula.outputDto.PerfilOutputDto;
 
 @Mapper
 public interface PerfilMapper {
-	public List<PerfilOutputDto> listPerfil (Map response) throws Exception;
+	public List<PerfilOutputDto> list (Map response) throws Exception;
 }

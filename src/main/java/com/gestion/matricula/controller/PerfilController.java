@@ -12,23 +12,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.matricula.outputDto.PerfilOutputDto;
 import com.gestion.matricula.services.PerfilService;
+import com.gestion.matricula.util.ApiResponse;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api/perfil")
-public class TestController {
+public class PerfilController {
 	
 	@Autowired
 	PerfilService perfilService;
 	
-	@GetMapping("/listPerfil")
-	public ResponseEntity<?> listPerfil() {
+	@GetMapping("/list")
+	public ResponseEntity<ApiResponse> list() {
 		try {
-			List<PerfilOutputDto> listResponse = perfilService.listPerfil();
-			return new ResponseEntity<>(listResponse, HttpStatus.OK);
+			List<PerfilOutputDto> listResponse = perfilService.list();
+			return ResponseEntity.ok(ApiResponse.ok("Listado de perfiles", listResponse));
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			return ResponseEntity.ok(ApiResponse.ok(e.getMessage(), HttpStatus.BAD_REQUEST));
 		}
 	}
 }

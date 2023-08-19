@@ -4,6 +4,7 @@
 
 	<resultMap id="listPerfil" type="com.gestion.matricula.outputDto.PerfilOutputDto">
 		<result property="idPerfil" column="id_perfil" />
+		<result property="cdoPerfil" column="cod_perfil" />
 		<result property="nombre" column="nombre" />
 		<result property="detalle" column="detalle" />
 		<result property="estado" column="estado" />
@@ -11,7 +12,7 @@
 		<result property="fchActualizacion" column="fch_actualizacion" />
 	</resultMap>
 	
-	<select id="listPerfil" statementType="CALLABLE"
+	<select id="list" statementType="CALLABLE"
 			resultMap="listPerfil">
 		{CALL sp_perfil_list(
 		)

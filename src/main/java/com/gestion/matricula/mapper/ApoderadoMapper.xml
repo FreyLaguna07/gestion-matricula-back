@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gestion.matricula.mapper.ApoderadoMapper">
+
+	<resultMap id="listApoderado" type="com.gestion.matricula.outputDto.ApoderadoOutputDto">
+		<result property="idApoderado" column="id_apoderado" />
+		<result property="apPaterno" column="ap_paterno" />
+		<result property="apMaterno" column="ap_materno" />
+		<result property="nombre" column="nombre" />
+		<result property="nroDni" column="nro_dni" />
+		<result property="nroTelefono" column="nro_telefono" />
+		<result property="codOperador" column="cod_operador" />
+	</resultMap>
+	
+	<select id="list" statementType="CALLABLE" parameterType="com.gestion.matricula.inputDto.SearchUsuarioInputDto"
+			resultMap="listApoderado">
+		{CALL sp_tb_apoderado_list(
+			#{idApoderado, jdbcType = INTEGER, mode = IN},
+			#{nroDni, jdbcType = VARCHAR, mode = IN},
+			#{nombre, jdbcType = VARCHAR, mode = IN},
+			#{apPaterno, jdbcType = VARCHAR, mode = IN},
+			#{apMaterno, jdbcType = VARCHAR, mode = IN}
+		)
+		}
+	</select>
+	
+	<insert id="insert" statementType="CALLABLE" parameterType="com.gestion.matricula.inputDto.ApoderadoInputDto">
+		{CALL sp_tb_apoderado_insert(
+			#{apPaterno, jdbcType = VARCHAR, mode = IN},
+			#{apMaterno, jdbcType = VARCHAR, mode = IN},
+			#{nombre, jdbcType = VARCHAR, mode = IN},
+			#{nroDni, jdbcType = VARCHAR, mode = IN},
+			#{nroTelefono, jdbcType = VARCHAR, mode = IN},
+			#{codOperador, jdbcType = VARCHAR, mode = IN},
+			#{codError, jdbcType = INTEGER, mode = OUT},
+			#{msgError, jdbcType = VARCHAR, mode = OUT}
+		)
+		}
+	</insert>
+	
+	<update id="update" statementType="CALLABLE" parameterType="com.gestion.matricula.inputDto.ApoderadoInputDto">
+		{CALL sp_tb_apoderado_update(
+			#{idApoderado, jdbcType = INTEGER, mode = IN},
+			#{apPaterno, jdbcType = VARCHAR, mode = IN},
+			#{apMaterno, jdbcType = VARCHAR, mode = IN},
+			#{nombre, jdbcType = VARCHAR, mode = IN},
+			#{nroDni, jdbcType = VARCHAR, mode = IN},
+			#{nroTelefono, jdbcType = VARCHAR, mode = IN},
+			#{codOperador, jdbcType = VARCHAR, mode = IN},
+			#{codError, jdbcType = INTEGER, mode = OUT},
+			#{msgError, jdbcType = VARCHAR, mode = OUT}
+		)
+		}
+	</update>
+	
+</mapper>

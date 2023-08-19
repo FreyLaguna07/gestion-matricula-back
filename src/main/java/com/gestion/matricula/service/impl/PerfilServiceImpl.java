@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.gestion.matricula.mapper.PerfilMapper;
 import com.gestion.matricula.outputDto.PerfilOutputDto;
 import com.gestion.matricula.services.PerfilService;
+import com.gestion.matricula.util.Constant;
 
 @Service("Perfil")
 public class PerfilServiceImpl implements PerfilService {
@@ -17,17 +18,13 @@ public class PerfilServiceImpl implements PerfilService {
 	PerfilMapper perfilMapper;
 	
 	@Override
-	public List<PerfilOutputDto> listPerfil() throws Exception{
+	public List<PerfilOutputDto> list() throws Exception{
 		try {
 			Map responseMap = new HashMap<>();
-			
-			//System.out.println("response"+listComboMapper.listComboArea(responseMap));
-			
-			return perfilMapper.listPerfil(responseMap);
+			return perfilMapper.list(responseMap);
 		} catch (Exception e) {
 			e.printStackTrace();
-			//throw new Exception(Constant.MSJ_ERROR);
-			throw new Exception("error");
+			throw new Exception(Constant.MSJ_ERROR);
 		}
 	}
 }
