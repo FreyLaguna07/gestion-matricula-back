@@ -17,10 +17,10 @@
 			#{tipoOperador, jdbcType = VARCHAR, mode = IN},
 			#{codOperador, jdbcType = VARCHAR, mode = IN},
 			#{correo, jdbcType = VARCHAR, mode = IN},
+			#{direccion, jdbcType = VARCHAR, mode = IN},
 			#{copiDni, jdbcType = VARCHAR, mode = IN},
 			#{copiPartidaNacimiento, jdbcType = VARCHAR, mode = IN},
 			#{foto, jdbcType = VARCHAR, mode = IN},
-			#{direccion, jdbcType = VARCHAR, mode = IN},
 			#{idCurso, jdbcType = INTEGER, mode = IN},
 			#{codError, jdbcType = INTEGER, mode = OUT},
 			#{msgError, jdbcType = VARCHAR, mode = OUT}
