@@ -4,7 +4,7 @@
 
 	<resultMap id="listPerfil" type="com.gestion.matricula.outputDto.PerfilOutputDto">
 		<result property="idPerfil" column="id_perfil" />
-		<result property="cdoPerfil" column="cod_perfil" />
+		<result property="codPerfil" column="cod_perfil" />
 		<result property="nombre" column="nombre" />
 		<result property="detalle" column="detalle" />
 		<result property="estado" column="estado" />

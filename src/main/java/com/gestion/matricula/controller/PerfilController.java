@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.matricula.outputDto.PerfilOutputDto;
-import com.gestion.matricula.services.PerfilService;
+import com.gestion.matricula.service.PerfilService;
 import com.gestion.matricula.util.ApiResponse;
 
 @CrossOrigin

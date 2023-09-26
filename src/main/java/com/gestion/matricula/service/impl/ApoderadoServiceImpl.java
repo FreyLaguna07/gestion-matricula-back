@@ -11,7 +11,7 @@ import com.gestion.matricula.inputDto.ApoderadoInputDto;
 import com.gestion.matricula.inputDto.SearchUsuarioInputDto;
 import com.gestion.matricula.mapper.ApoderadoMapper;
 import com.gestion.matricula.outputDto.ApoderadoOutputDto;
-import com.gestion.matricula.services.ApoderadoService;
+import com.gestion.matricula.service.ApoderadoService;
 
 @Service("Apoderado")
 public class ApoderadoServiceImpl implements ApoderadoService{

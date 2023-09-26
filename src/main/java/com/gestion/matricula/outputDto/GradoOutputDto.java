@@ -8,15 +8,15 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PerfilOutputDto implements Serializable{
-	
+public class GradoOutputDto implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
-	private Integer idPerfil;
-	private String codPerfil;
+
+	private Integer idGrado;
+	private String codGrado;
 	private String nombre;
-	private String detalle;
+	private String nivel;
 	private Boolean estado;
 	private Date fchCreacion;
-	private Date fchActualizacion;
+	private Date fchActualizacion; 
 }

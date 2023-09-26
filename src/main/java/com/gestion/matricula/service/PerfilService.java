@@ -1,4 +1,4 @@
-package com.gestion.matricula.services;
+package com.gestion.matricula.service;
 
 import java.util.List;
 

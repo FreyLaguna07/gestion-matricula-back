@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 import lombok.Getter;
 import lombok.Setter;
-
+import java.sql.Time;
+import java.util.List;
 @Getter
 @Setter
 public class ListUsuarioOutputDto implements Serializable{
@@ -19,6 +20,7 @@ public class ListUsuarioOutputDto implements Serializable{
 	private String sexo;
 	private Integer idPerfil;
 	private String tipousuario;
+	private Integer estadoAlumno;
 	
 	private String codPerfil;
 	private String detalle;
@@ -26,6 +28,7 @@ public class ListUsuarioOutputDto implements Serializable{
 	private String copiDni;
 	private String copiPartidaNacimiento;
 	private String foto;
+	private String certEstudio;
 	private Integer idContacto;
 	private String nroTelefono;
 	private String tipoOperador;
@@ -39,4 +42,12 @@ public class ListUsuarioOutputDto implements Serializable{
 	private String telefonoApooderado;
 	private String codOperadorApoderado;
 	private String direccion;
+	
+	private Integer idCurso;
+	private List<Integer> idCursos;
+	private String nomCurso;
+	private String codCurso;
+	private String desCurso;
+	private Time horas;
+	private Integer anio;
 }

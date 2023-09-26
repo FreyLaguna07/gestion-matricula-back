@@ -1,4 +1,4 @@
-package com.gestion.matricula.services;
+package com.gestion.matricula.service;
 
 import java.util.List;
 import java.util.Map;
@@ -14,5 +14,7 @@ public interface UsuarioService {
 	public Map<String, Object> update(UsuarioInputDto usuarioDto) throws Exception;
 
 	public Map<String, Object> insert(UsuarioInputDto usuarioDto) throws Exception;
+
+	public List<ListUsuarioOutputDto> listAlumMatriula(SearchUsuarioInputDto search) throws Exception;
 
 }

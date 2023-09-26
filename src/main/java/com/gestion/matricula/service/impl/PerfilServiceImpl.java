@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.gestion.matricula.mapper.PerfilMapper;
 import com.gestion.matricula.outputDto.PerfilOutputDto;
-import com.gestion.matricula.services.PerfilService;
+import com.gestion.matricula.service.PerfilService;
 import com.gestion.matricula.util.Constant;
 
 @Service("Perfil")

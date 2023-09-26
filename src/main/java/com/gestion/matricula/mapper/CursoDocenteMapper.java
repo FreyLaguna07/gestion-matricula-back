@@ -9,14 +9,10 @@ import org.apache.ibatis.annotations.Mapper;
 import com.gestion.matricula.outputDto.ListUsuarioOutputDto;
 
 @Mapper
-public interface UsuarioMapper {
-
-	public void insert(HashMap<Object, Object> obj);
+public interface CursoDocenteMapper {
 
 	public List<ListUsuarioOutputDto> list(Map<Object, Object> obj);
 	
-	public void update(HashMap<Object, Object> obj);
-	
-	public List<ListUsuarioOutputDto> listAlumMatriula(Map<Object, Object> obj);
+	public void insert(HashMap<Object, Object> obj);
 	
 }

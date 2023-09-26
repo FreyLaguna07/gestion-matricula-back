@@ -10,6 +10,7 @@ import lombok.Setter;
 public class SearchUsuarioInputDto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	private Integer idUsuario;
 	private Integer idApoderado;
 	private String codPerfil;
 	private String nroDni;
@@ -19,4 +20,9 @@ public class SearchUsuarioInputDto implements Serializable{
 	private String fchInicio;
 	private String fchFin;
 	
+	//alumnoMatricual
+	private Integer estadoAlumno;
+	private String seccion;
+	private String codGrado;
+	private String anio;
 }

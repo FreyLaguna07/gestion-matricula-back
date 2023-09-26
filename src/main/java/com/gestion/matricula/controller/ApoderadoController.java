@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gestion.matricula.inputDto.ApoderadoInputDto;
 import com.gestion.matricula.inputDto.SearchUsuarioInputDto;
 import com.gestion.matricula.outputDto.ApoderadoOutputDto;
-import com.gestion.matricula.services.ApoderadoService;
+import com.gestion.matricula.service.ApoderadoService;
 import com.gestion.matricula.util.ApiResponse;
 
 @RestController

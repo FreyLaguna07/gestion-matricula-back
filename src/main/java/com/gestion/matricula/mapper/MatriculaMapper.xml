@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gestion.matricula.mapper.MatriculaMapper">
+
+	<resultMap id="countAlum" type="Integer">
+		<result property="cantAlumno" column="cant_alumno" />
+	</resultMap>
+	
+	<select id="countAlumnoMatriculado" statementType="CALLABLE" parameterType="com.gestion.matricula.inputDto.CursoInputDto"
+			resultMap="countAlum">
+		{	CALL sp_count_matriculados (
+			#{nivelAcademico, jdbcType = VARCHAR, mode = IN},
+			#{codCurso, jdbcType = VARCHAR, mode = IN},
+			#{seccion, jdbcType = VARCHAR, mode = IN}
+			)
+		}
+	</select>
+	
+	<insert id="insert" statementType="CALLABLE" parameterType="com.gestion.matricula.inputDto.MatriculaInputDto">
+		{CALL sp_tb_apoderado_insert(
+			#{idUsuario, jdbcType = INTEGER, mode = IN},
+			#{idGrado, jdbcType = INTEGER, mode = IN},
+			#{periodo, jdbcType = VARCHAR, mode = IN},
+			#{seccion, jdbcType = VARCHAR, mode = IN},
+			#{codError, jdbcType = INTEGER, mode = OUT},
+			#{msgError, jdbcType = VARCHAR, mode = OUT}
+			)
+		}
+	</insert>
+	
+</mapper>

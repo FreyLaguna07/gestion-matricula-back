@@ -16,4 +16,9 @@ public class CursoInputDto implements Serializable{
 	private String codCurso;
 	private String descripcion;
 	private Time horas;
+	private String nivelAcademico;
+	private String codGrado;
+	
+	//seccion
+	private String seccion;
 }

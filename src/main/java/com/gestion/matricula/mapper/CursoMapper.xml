@@ -11,12 +11,22 @@
 		<result property="estado" column="estado" />
 		<result property="fchCreacion" column="fch_creacion" />
 		<result property="fchActualizacion" column="fch_actualizacion" />
+		<result property="idGrado" column="id_grado" />
+		<result property="codGrado" column="cod_grado" />
+		<result property="nomGrado" column="nom_grado" />
+		<result property="nivel" column="nivel" />
+		<result property="nomDocente" column="nom_docente" />
+		<result property="apPaternoDocente" column="ap_paterno" />
+		<result property="apMaternoDocente" column="ap_materno" />
+		<result property="nroDniDocente" column="nro_dni" />
 	</resultMap>
 	
 	<select id="list" statementType="CALLABLE" parameterType="com.gestion.matricula.inputDto.CursoInputDto"
 			resultMap="listCurso">
 		{CALL sp_curso_list(
-			#{idCurso, jdbcType = INTEGER, mode = IN}
+			#{idCurso, jdbcType = INTEGER, mode = IN},
+			#{nivelAcademico, jdbcType = VARCHAR, mode = IN},
+			#{codGrado, jdbcType = VARCHAR, mode = IN}
 		)
 		}
 	</select>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gestion.matricula.mapper.GradoMapper">
+
+	<resultMap id="listGrado" type="com.gestion.matricula.outputDto.GradoOutputDto">
+		<result property="idGrado" column="id_grado" />
+		<result property="codGrado" column="cod_grado" />
+		<result property="nombre" column="nombre" />
+		<result property="nivel" column="nivel" />
+		<result property="estado" column="estado" />
+		<result property="fchCreacion" column="fch_creacion" />
+		<result property="fchActualizacion" column="fch_actualizacion" />
+	</resultMap>
+	
+	<select id="list" statementType="CALLABLE" 
+			resultMap="listGrado" >
+		{ CALL sp_tb_grado_list(
+			#{nivel, jdbcType = VARCHAR, mode = IN}
+			)
+		}
+	</select>
+</mapper>

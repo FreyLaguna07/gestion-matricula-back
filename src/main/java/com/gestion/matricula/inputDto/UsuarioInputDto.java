@@ -1,6 +1,7 @@
 package com.gestion.matricula.inputDto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class UsuarioInputDto implements Serializable{
 	private String nroDni;
 	private String fchNacimiento;
 	private String sexo;
+	private Integer estadoAlumno;
 	//datos apoderado 
 	private Integer idApoderado;
 	//datos contacto
@@ -30,12 +32,14 @@ public class UsuarioInputDto implements Serializable{
 	private String copiDni;
 	private String copiPartidaNacimiento;
 	private String foto;
+	private String certEstudio;
 	
 	//param update
 	private Integer idUsuario;
 	private Integer idContacto;
 	private Integer idDetalle;
 	private String direccion;
+	private List<Integer> idCursos;
 	private Integer idCurso;
 	private Integer codError;
 	private String msgError;

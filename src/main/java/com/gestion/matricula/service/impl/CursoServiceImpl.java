@@ -14,8 +14,8 @@ import com.gestion.matricula.mapper.ApoderadoMapper;
 import com.gestion.matricula.mapper.CursoMapper;
 import com.gestion.matricula.outputDto.ApoderadoOutputDto;
 import com.gestion.matricula.outputDto.CursoOutputDto;
-import com.gestion.matricula.services.ApoderadoService;
-import com.gestion.matricula.services.CursoService;
+import com.gestion.matricula.service.ApoderadoService;
+import com.gestion.matricula.service.CursoService;
 
 @Service("Curso")
 public class CursoServiceImpl implements CursoService{
@@ -24,9 +24,13 @@ public class CursoServiceImpl implements CursoService{
 	private CursoMapper cursoMapper;
 	
 	@Override
-	public List<CursoOutputDto> list(Integer idCurso){
-		if(idCurso == 0) idCurso = null;
-		return cursoMapper.list(idCurso);
+	public List<CursoOutputDto> list(CursoInputDto curso){
+		if(curso.getIdCurso() == 0) curso.setIdCurso(null);
+		HashMap<Object, Object> search = new HashMap<>();
+		search.put("idCurso", curso.getIdCurso() != null ? curso.getIdCurso() : null);
+		search.put("nivelAcademico", curso.getNivelAcademico() != null ? curso.getNivelAcademico() : null);
+		search.put("codGrado", curso.getCodGrado() != null ? curso.getCodGrado(): null);
+		return cursoMapper.list(curso);
 	}
 	
 	@Override 

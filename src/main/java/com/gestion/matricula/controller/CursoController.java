@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.matricula.inputDto.CursoInputDto;
 import com.gestion.matricula.outputDto.CursoOutputDto;
-import com.gestion.matricula.services.CursoService;
+import com.gestion.matricula.service.CursoService;
 import com.gestion.matricula.util.ApiResponse;
 
 @RestController
@@ -25,9 +25,9 @@ public class CursoController {
 	@Autowired
 	CursoService cursoService;
 
-	@GetMapping("/list/{idCurso}")
-	public ResponseEntity<ApiResponse> list(@PathVariable Integer idCurso) {
-		return ResponseEntity.ok(ApiResponse.ok("Listado de apoderado", cursoService.list(idCurso)));
+	@PostMapping("/list")
+	public ResponseEntity<ApiResponse> list(@RequestBody CursoInputDto curso) {
+		return ResponseEntity.ok(ApiResponse.ok("Listado de apoderado", cursoService.list(curso)));
 	}
 
 	@PostMapping("/insert")

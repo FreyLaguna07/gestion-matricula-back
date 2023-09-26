@@ -20,4 +20,17 @@ public class CursoOutputDto implements Serializable{
 	private Boolean estado;
 	private Date fchCreacion;
 	private Date fchActualizacion;
+	
+	//tb_grado
+	private Integer idGrado;
+	private String codGrado;
+	private String nomGrado;
+	private String nivel;
+	
+	//docente
+	private String nomDocente;
+	private String apPaternoDocente;
+	private String apMaternoDocente;
+	private String nroDniDocente;
+	
 }
