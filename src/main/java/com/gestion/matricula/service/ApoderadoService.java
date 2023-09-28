@@ -11,8 +11,8 @@ public interface ApoderadoService {
 
 	public List<ApoderadoOutputDto> list(SearchUsuarioInputDto search);
 
-	public Map<Object, Object> insert(ApoderadoInputDto dto);
+	public Map<Object, Object> insert(ApoderadoInputDto dto) throws Exception;
 
-	public Map<Object, Object> update(ApoderadoInputDto dto);
+	public Map<Object, Object> update(ApoderadoInputDto dto) throws Exception;
 	
 }

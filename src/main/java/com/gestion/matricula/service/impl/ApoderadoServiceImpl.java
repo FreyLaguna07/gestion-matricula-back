@@ -6,6 +6,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gestion.matricula.inputDto.ApoderadoInputDto;
 import com.gestion.matricula.inputDto.SearchUsuarioInputDto;
@@ -31,35 +34,45 @@ public class ApoderadoServiceImpl implements ApoderadoService{
 	}
 	
 	@Override 
-	public Map<Object, Object> insert(ApoderadoInputDto dto) {
-		HashMap<Object, Object> insert = new HashMap<>();
-		insert.put("apPaterno", dto.getApPaterno());
-		insert.put("apMaterno", dto.getApMaterno());
-		insert.put("nombre", dto.getNombre());
-		insert.put("nroDni", dto.getNroDni());
-		insert.put("nroTelefono", dto.getNroTelefono());
-		insert.put("codOperador", dto.getCodOperador());
-		apoderadoMapper.insert(insert);
-		Map<Object, Object> resp = new HashMap<>();
-		resp.put("codError", insert.get("codError"));
-		resp.put("msgError", insert.get("msgError"));
-		return resp;
+	@Transactional (propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout=36000, rollbackFor =Exception.class)
+	public Map<Object, Object> insert(ApoderadoInputDto dto) throws Exception {
+		try {
+			HashMap<Object, Object> insert = new HashMap<>();
+			insert.put("apPaterno", dto.getApPaterno());
+			insert.put("apMaterno", dto.getApMaterno());
+			insert.put("nombre", dto.getNombre());
+			insert.put("nroDni", dto.getNroDni());
+			insert.put("nroTelefono", dto.getNroTelefono());
+			insert.put("codOperador", dto.getCodOperador());
+			apoderadoMapper.insert(insert);
+			Map<Object, Object> resp = new HashMap<>();
+			resp.put("codError", insert.get("codError"));
+			resp.put("msgError", insert.get("msgError"));
+			return resp;
+		} catch (Exception e) {
+			throw new Exception (e.getMessage());
+		}
 	}
 	
 	@Override
-	public Map<Object, Object> update(ApoderadoInputDto dto) {
-		HashMap<Object, Object> update = new HashMap<>();
-		update.put("idApoderado", dto.getIdApoderado());
-		update.put("apPaterno", dto.getApPaterno());
-		update.put("apMaterno", dto.getApMaterno());
-		update.put("nombre", dto.getNombre());
-		update.put("nroDni", dto.getNroDni());
-		update.put("nroTelefono", dto.getNroTelefono());
-		update.put("codOperador", dto.getCodOperador());
-		apoderadoMapper.update(update);
-		Map<Object, Object> resp = new HashMap<>();
-		resp.put("codError", update.get("codError"));
-		resp.put("msgError", update.get("msgError"));
-		return resp;
+	@Transactional (propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout=36000, rollbackFor =Exception.class)
+	public Map<Object, Object> update(ApoderadoInputDto dto) throws Exception {
+		try {
+			HashMap<Object, Object> update = new HashMap<>();
+			update.put("idApoderado", dto.getIdApoderado());
+			update.put("apPaterno", dto.getApPaterno());
+			update.put("apMaterno", dto.getApMaterno());
+			update.put("nombre", dto.getNombre());
+			update.put("nroDni", dto.getNroDni());
+			update.put("nroTelefono", dto.getNroTelefono());
+			update.put("codOperador", dto.getCodOperador());
+			apoderadoMapper.update(update);
+			Map<Object, Object> resp = new HashMap<>();
+			resp.put("codError", update.get("codError"));
+			resp.put("msgError", update.get("msgError"));
+			return resp;
+		} catch (Exception e) {
+			throw new Exception (e.getMessage());
+		}
 	}
 }

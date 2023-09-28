@@ -14,4 +14,7 @@ public class MatriculaInputDto implements Serializable {
 	private Integer idGrado;
 	private String periodo;
 	private String seccion;
+	
+	private Integer codError;
+	private String msgError;
 }

@@ -17,7 +17,7 @@
 	</select>
 	
 	<insert id="insert" statementType="CALLABLE" parameterType="com.gestion.matricula.inputDto.MatriculaInputDto">
-		{CALL sp_tb_apoderado_insert(
+		{CALL sp_tb_matricula_insert(
 			#{idUsuario, jdbcType = INTEGER, mode = IN},
 			#{idGrado, jdbcType = INTEGER, mode = IN},
 			#{periodo, jdbcType = VARCHAR, mode = IN},

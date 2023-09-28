@@ -9,6 +9,6 @@ public interface MatriculaSercice {
 
 	public Integer countAlumnoMatriculado(CursoInputDto countSearch);
 
-	public Map<Object, Object> insert(MatriculaInputDto matricula);
+	public Map<Object, Object> insert(MatriculaInputDto matricula) throws Exception;
 
 }
