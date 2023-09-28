@@ -32,12 +32,12 @@ public class ApoderadoController {
 	}
 
 	@PostMapping("/insert")
-	public ResponseEntity<ApiResponse> insert(@RequestBody ApoderadoInputDto dto) {
+	public ResponseEntity<ApiResponse> insert(@RequestBody ApoderadoInputDto dto) throws Exception {
 		return ResponseEntity.ok(ApiResponse.ok("Registrar apoderado", apoderadoService.insert(dto)));
 	}
 
 	@PostMapping("/update")
-	public ResponseEntity<ApiResponse> update(@RequestBody ApoderadoInputDto dto) {
+	public ResponseEntity<ApiResponse> update(@RequestBody ApoderadoInputDto dto) throws Exception {
 		return ResponseEntity.ok(ApiResponse.ok("Actualizar apoderado", apoderadoService.update(dto)));
 
 	}

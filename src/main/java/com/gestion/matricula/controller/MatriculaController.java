@@ -28,7 +28,7 @@ public class MatriculaController {
 	}
 	
 	@PostMapping(path="/insert", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ApiResponse> insert(@RequestBody MatriculaInputDto matricula){
+	public ResponseEntity<ApiResponse> insert(@RequestBody MatriculaInputDto matricula) throws Exception{
 		return ResponseEntity.ok(ApiResponse.ok("Registro de matricula", matriculaSercice.insert(matricula)));
 	}
 	
