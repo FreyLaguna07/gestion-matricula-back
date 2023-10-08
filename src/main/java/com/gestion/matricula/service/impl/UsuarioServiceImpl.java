@@ -33,7 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public Map<String, Object> insert(UsuarioInputDto usuarioDto) throws Exception {
 		Boolean isAdmin = false;
 		try {
-			if(usuarioDto.getCodPerfil().equals(usuarioDto.getCodPerfil())) isAdmin = true;
+			if(usuarioDto.getCodPerfil().equals("01")) isAdmin = true;
 			HashMap<Object, Object> insert = new HashMap<>();
 			insert.put("codPerfil", usuarioDto.getCodPerfil());
 			insert.put("idPerfil", usuarioDto.getIdPerfil());
