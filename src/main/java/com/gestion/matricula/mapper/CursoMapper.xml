@@ -26,7 +26,7 @@
 		{CALL sp_curso_list(
 			#{idCurso, jdbcType = INTEGER, mode = IN},
 			#{nivelAcademico, jdbcType = VARCHAR, mode = IN},
-			#{codGrado, jdbcType = VARCHAR, mode = IN}
+			#{idGrado, jdbcType = VARCHAR, mode = IN}
 		)
 		}
 	</select>
@@ -37,6 +37,7 @@
 			#{codCurso, jdbcType = VARCHAR, mode = IN},
 			#{descripcion, jdbcType = VARCHAR, mode = IN},
 			#{horas, jdbcType = VARCHAR, mode = IN},
+			#{idGrado, jdbcType = INTEGER, mode = IN},
 			#{codError, jdbcType = INTEGER, mode = OUT},
 			#{msgError, jdbcType = VARCHAR, mode = OUT}
 		)
@@ -50,6 +51,8 @@
 			#{codCurso, jdbcType = VARCHAR, mode = IN},
 			#{descripcion, jdbcType = VARCHAR, mode = IN},
 			#{horas, jdbcType = VARCHAR, mode = IN},
+			#{idGrado, jdbcType = INTEGER, mode = IN},
+			#{idNuevoGrado, jdbcType = INTEGER, mode = IN},
 			#{codError, jdbcType = INTEGER, mode = OUT},
 			#{msgError, jdbcType = VARCHAR, mode = OUT}
 		)

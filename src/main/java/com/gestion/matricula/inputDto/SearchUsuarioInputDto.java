@@ -24,5 +24,6 @@ public class SearchUsuarioInputDto implements Serializable{
 	private Integer estadoAlumno;
 	private String seccion;
 	private String codGrado;
+	private Integer idGrado;
 	private String anio;
 }

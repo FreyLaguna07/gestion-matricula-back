@@ -10,7 +10,7 @@
 			resultMap="countAlum">
 		{	CALL sp_count_matriculados (
 			#{nivelAcademico, jdbcType = VARCHAR, mode = IN},
-			#{codCurso, jdbcType = VARCHAR, mode = IN},
+			#{idGrado, jdbcType = VARCHAR, mode = IN},
 			#{seccion, jdbcType = VARCHAR, mode = IN}
 			)
 		}

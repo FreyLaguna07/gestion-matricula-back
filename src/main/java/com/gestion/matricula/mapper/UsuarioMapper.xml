@@ -153,7 +153,7 @@
 		
 	</resultMap>
 	<select id="listAlumMatriula" parameterType="com.gestion.matricula.inputDto.SearchUsuarioInputDto" statementType="CALLABLE" resultMap="listAlumnoMatriculaDto">
-		{CALL sp_tb_alumno_matricula_list(
+		{CALL sp_tb_alumno_matricula_list (
 			#{idUsuario, jdbcType = INTEGER, mode = IN},
 			#{codPerfil, jdbcType = VARCHAR, mode = IN},
 			#{nroDni, jdbcType = VARCHAR, mode = IN},
@@ -162,7 +162,7 @@
 			#{apMaterno, jdbcType = VARCHAR, mode = IN},
 			#{estadoAlumno, jdbcType = INTEGER, mode = IN},
 			#{seccion, jdbcType = VARCHAR, mode = IN},
-			#{codGrado, jdbcType = VARCHAR, mode = IN},
+			#{idGrado, jdbcType = INTEGER, mode = IN},
 			#{anio, jdbcType = VARCHAR, mode = IN}
 		)
 		}

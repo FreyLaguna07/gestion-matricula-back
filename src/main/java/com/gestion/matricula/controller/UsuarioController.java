@@ -78,9 +78,9 @@ public class UsuarioController {
 			param.setApMaterno(search.getApMaterno() != null ? search.getApMaterno() : null);
 			param.setEstadoAlumno(search.getEstadoAlumno() != null ? search.getEstadoAlumno() : null);
 			param.setSeccion(search.getSeccion() != null ? search.getSeccion() : null);
-			param.setCodGrado(search.getCodGrado() != null ? search.getCodGrado() : null);
+			param.setIdGrado(search.getIdGrado() != null ? search.getIdGrado() : null);
 			param.setAnio(search.getAnio() != null ? search.getAnio() : null);
-			List<ListUsuarioOutputDto> resp = usuarioService.list(param);
+			List<ListUsuarioOutputDto> resp = usuarioService.listAlumMatriula(param);
 			return ResponseEntity.ok(ApiResponse.ok(Constant.MSJ_EXITO, resp));
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -37,6 +37,7 @@ public class CursoServiceImpl implements CursoService{
 	public Map<Object, Object> insert(CursoInputDto dto) {
 		HashMap<Object, Object> insert = new HashMap<>();
 		insert.put("nombre", dto.getNombre());
+		insert.put("idGrado", dto.getIdGrado());
 		insert.put("codCurso", dto.getCodCurso());
 		insert.put("descripcion", dto.getDescripcion());
 		insert.put("horas", dto.getHoras());
@@ -51,6 +52,8 @@ public class CursoServiceImpl implements CursoService{
 	public Map<Object, Object> update(CursoInputDto dto) {
 		HashMap<Object, Object> update = new HashMap<>();
 		update.put("idCurso", dto.getIdCurso());
+		update.put("idGrado", dto.getIdGrado());
+		update.put("idNuevoGrado", dto.getIdNuevoGrado());
 		update.put("nombre", dto.getNombre());
 		update.put("codCurso", dto.getCodCurso());
 		update.put("descripcion", dto.getDescripcion());

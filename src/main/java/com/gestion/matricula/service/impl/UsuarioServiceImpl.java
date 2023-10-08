@@ -159,19 +159,19 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public List<ListUsuarioOutputDto> listAlumMatriula(SearchUsuarioInputDto search) throws Exception{
 		try {
 			Map<Object, Object> requestMap = new HashMap<>();
-			requestMap.put("idUsuario",search.getIdUsuario()); 
-			requestMap.put("codPerfil",search.getCodPerfil()); 
-			requestMap.put("nroDni",search.getNroDni()); 
-			requestMap.put("nombre",search.getNombre()); 
-			requestMap.put("apPaterno",search.getApPaterno()); 
-			requestMap.put("apMaterno",search.getApMaterno()); 
-			requestMap.put("estadoAlumno",search.getEstadoAlumno()); 
-			requestMap.put("seccion",search.getSeccion()); 
-			requestMap.put("codGrado",search.getCodGrado()); 
-			requestMap.put("anio",search.getAnio()); 
+			requestMap.put("idUsuario",search.getIdUsuario() != null ? search.getIdUsuario() : null); 
+			requestMap.put("codPerfil",search.getCodPerfil() != null ? search.getCodPerfil() : null); 
+			requestMap.put("nroDni",search.getNroDni() != null ? search.getNroDni() : null); 
+			requestMap.put("nombre",search.getNombre() != null ? search.getNombre() : null); 
+			requestMap.put("apPaterno",search.getApPaterno() != null ? search.getApPaterno() : null); 
+			requestMap.put("apMaterno",search.getApMaterno() != null ? search.getApMaterno() : null); 
+			requestMap.put("estadoAlumno",search.getEstadoAlumno() != null ? search.getEstadoAlumno() : null); 
+			requestMap.put("seccion",search.getSeccion() != null ? search.getSeccion() : null); 
+			requestMap.put("idGrado",search.getIdGrado() != null ? search.getIdGrado() : null); 
+			requestMap.put("anio",search.getAnio() != null ? search.getAnio() : null); 
 			List<ListUsuarioOutputDto> listCursoDocente = cursoDocenteMapper.list(requestMap);
 			List<Integer> idList = listCursoDocente.stream().map(x -> x.getIdCurso()).collect(Collectors.toList());
-			List<ListUsuarioOutputDto> listUsuario = usuarioMapper.list(requestMap);
+			List<ListUsuarioOutputDto> listUsuario = usuarioMapper.listAlumMatriula(requestMap);
 			listUsuario.stream().forEach(e -> {
 				e.setIdCursos(idList);
 			});
