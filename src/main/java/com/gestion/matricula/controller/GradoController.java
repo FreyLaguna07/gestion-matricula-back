@@ -21,8 +21,8 @@ public class GradoController {
 	@Autowired
 	private GradoService gradoService;
 	
-	@GetMapping(path="/list/{nivelAcademico}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ApiResponse> list(@PathVariable("nivelAcademico") String nivelAcademico){
-		return ResponseEntity.ok(ApiResponse.ok("Listado de grado", gradoService.list(nivelAcademico)));
+	@GetMapping(path="/list/{nivelAcademico}/{idGrado}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ApiResponse> list(@PathVariable("nivelAcademico") String nivelAcademico,@PathVariable("idGrado") Integer idGrado){
+		return ResponseEntity.ok(ApiResponse.ok("Listado de grado", gradoService.list(nivelAcademico, idGrado)));
 	}
 }

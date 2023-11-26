@@ -144,6 +144,71 @@
 		<result property="telefonoApooderado" column="telefono_apoderado" />
 		<result property="codOperadorApoderado" column="cod_operador_apoderado" />
 		<result property="direccion" column="direccion" />
+		
+		<result property="idCurso" column="id_curso" />
+		<result property="nomCurso" column="nomCurso" />
+		<result property="codCurso" column="cod_curso" />
+		<result property="desCurso" column="descripcion" />
+		<result property="horas" column="horas" />
+		<result property="estadoAlumno" column="estado_alumno" />
+		<result property="idGrado" column="id_grado" />
+		<result property="nivel" column="nivel" />
+		<result property="fchMatricula" column="fch_creacion" />
+		<result property="nomGrado" column="nom_grado" />
+		<result property="seccion" column="seccion" />
+		<result property="anio" column="anio" />
+		
+		
+	</resultMap>
+	<select id="listAlumMatriula" parameterType="com.gestion.matricula.inputDto.SearchUsuarioInputDto" statementType="CALLABLE" resultMap="listAlumnoMatriculaDto">
+		{CALL sp_tb_alumno_matricula_list (
+			#{idUsuario, jdbcType = INTEGER, mode = IN},
+			#{codPerfil, jdbcType = VARCHAR, mode = IN},
+			#{nroDni, jdbcType = VARCHAR, mode = IN},
+			#{nombre, jdbcType = VARCHAR, mode = IN},
+			#{apPaterno, jdbcType = VARCHAR, mode = IN},
+			#{apMaterno, jdbcType = VARCHAR, mode = IN},
+			#{estadoAlumno, jdbcType = INTEGER, mode = IN},
+			#{seccion, jdbcType = VARCHAR, mode = IN},
+			#{idGrado, jdbcType = INTEGER, mode = IN},
+			#{anio, jdbcType = VARCHAR, mode = IN}
+		)
+		}
+	</select>
+	
+	
+	
+		<resultMap id="listAlumnoNoMatriculaDto" type="com.gestion.matricula.outputDto.ListUsuarioOutputDto">
+		<result property="idUsuario" column="id_usuario" />
+		<result property="nomUsuario" column="nombre" />
+		<result property="apPaternoUsuario" column="ap_paterno" />
+		<result property="apMaternoUsuario" column="ap_materno" />
+		<result property="nroDniUsuario" column="nro_dni" />
+		<result property="fchNacimeintoUsuario" column="fch_nacimiento" />
+		<result property="sexo" column="sexo" />
+		<result property="idPerfil" column="id_perfil" />
+		<result property="tipousuario" column="tipo_usuario" />
+		<result property="codPerfil" column="cod_perfil" />
+		<result property="detalle" column="detalle" />
+		<result property="idDetalle" column="id_detalle" />
+		<result property="copiDni" column="copi_dni" />
+		<result property="copiPartidaNacimiento" column="copi_partida_nacimiento" />
+		<result property="foto" column="foto" />
+		<result property="certEstudio" column="cert_estudio" />
+		<result property="idContacto" column="id_contacto" />
+		<result property="nroTelefono" column="nro_telefono" />
+		<result property="tipoOperador" column="tipo_operador" />
+		<result property="codOperador" column="cod_operador" />
+		<result property="correo" column="correo" />
+		<result property="idApoderado" column="id_apoderado" />
+		<result property="nomApoderado" column="nom_apoderado" />
+		<result property="apPaternoApoderado" column="ap_paterno_apoderado" />
+		<result property="apMaternoApoderado" column="ap_materno_apoderado" />
+		<result property="nroDniApoderado" column="nro_dni_apoderado" />
+		<result property="telefonoApooderado" column="telefono_apoderado" />
+		<result property="codOperadorApoderado" column="cod_operador_apoderado" />
+		<result property="direccion" column="direccion" />
+		
 		<result property="idCurso" column="id_curso" />
 		<result property="nomCurso" column="nomCurso" />
 		<result property="codCurso" column="cod_curso" />
@@ -151,9 +216,10 @@
 		<result property="horas" column="horas" />
 		<result property="estadoAlumno" column="estado_alumno" />
 		
+		
 	</resultMap>
-	<select id="listAlumMatriula" parameterType="com.gestion.matricula.inputDto.SearchUsuarioInputDto" statementType="CALLABLE" resultMap="listAlumnoMatriculaDto">
-		{CALL sp_tb_alumno_matricula_list (
+	<select id="listAlumNoMatriulado" parameterType="com.gestion.matricula.inputDto.SearchUsuarioInputDto" statementType="CALLABLE" resultMap="listAlumnoNoMatriculaDto">
+		{CALL sp_tb_alumno_no_matriculado_list (
 			#{idUsuario, jdbcType = INTEGER, mode = IN},
 			#{codPerfil, jdbcType = VARCHAR, mode = IN},
 			#{nroDni, jdbcType = VARCHAR, mode = IN},

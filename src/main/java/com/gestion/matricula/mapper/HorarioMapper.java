@@ -6,9 +6,10 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gestion.matricula.outputDto.GradoOutputDto;
+import com.gestion.matricula.outputDto.HorarioOutputDto;
 
 @Mapper
-public interface GradoMapper {
+public interface HorarioMapper {
 	
-	public List<GradoOutputDto> list(Map<Object, Object> search);
+	public List<HorarioOutputDto> list(Integer idCurso);
 }

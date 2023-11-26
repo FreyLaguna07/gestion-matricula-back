@@ -17,4 +17,6 @@ public interface UsuarioService {
 
 	public List<ListUsuarioOutputDto> listAlumMatriula(SearchUsuarioInputDto search) throws Exception;
 
+	public Map<String, Object> generateReporteMatriculaPdf(String codPerfil, String nroDni) throws Exception;
+
 }

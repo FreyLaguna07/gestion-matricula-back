@@ -19,4 +19,6 @@ public interface UsuarioMapper {
 	
 	public List<ListUsuarioOutputDto> listAlumMatriula(Map<Object, Object> obj);
 	
+	public List<ListUsuarioOutputDto> listAlumNoMatriulado(Map<Object, Object> obj);
+	
 }

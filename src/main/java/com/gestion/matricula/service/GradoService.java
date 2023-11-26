@@ -6,6 +6,6 @@ import com.gestion.matricula.outputDto.GradoOutputDto;
 
 public interface GradoService {
 
-	public List<GradoOutputDto> list(String nivelAcademico);
+	public List<GradoOutputDto> list(String nivelAcademico, Integer idGrado);
 	
 }

@@ -14,10 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gestion.matricula.inputDto.SearchUsuarioInputDto;
 import com.gestion.matricula.inputDto.UsuarioInputDto;
 import com.gestion.matricula.mapper.CursoDocenteMapper;
+import com.gestion.matricula.mapper.HorarioMapper;
 import com.gestion.matricula.mapper.UsuarioMapper;
+import com.gestion.matricula.outputDto.GradoOutputDto;
 import com.gestion.matricula.outputDto.ListUsuarioOutputDto;
+import com.gestion.matricula.service.GradoService;
 import com.gestion.matricula.service.UsuarioService;
 import com.gestion.matricula.util.EnumEstadoAlumno;
+import com.gestion.matricula.util.PdfGenerator;
+import com.gestion.matricula.util.TemplateEngineService;
 
 @Service("usuarioService")
 public class UsuarioServiceImpl implements UsuarioService{
@@ -26,7 +31,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 	private UsuarioMapper usuarioMapper;
 	
 	@Autowired
+	private HorarioMapper horarioMapper;
+	
+	@Autowired
 	private CursoDocenteMapper cursoDocenteMapper;
+	
+	@Autowired
+	private GradoService gradoService;
 	
 	@Override
 	@Transactional (propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout=36000, rollbackFor =Exception.class)
@@ -175,10 +186,58 @@ public class UsuarioServiceImpl implements UsuarioService{
 			listUsuario.stream().forEach(e -> {
 				e.setIdCursos(idList);
 			});
-			
+			if(listUsuario.isEmpty()) {
+				listUsuario = usuarioMapper.listAlumNoMatriulado(requestMap);
+			}
 			return listUsuario;
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
+	
+	@Override
+	public Map<String, Object> generateReporteMatriculaPdf(String codPerfil, String nroDni) throws Exception {
+		try {
+			Map<Object, Object> requestMap = new HashMap<>();
+			requestMap.put("idUsuario", null);
+			requestMap.put("codPerfil", codPerfil);
+			requestMap.put("nroDni", nroDni);
+			requestMap.put("nombre", null);
+			requestMap.put("apPaterno", null);
+			requestMap.put("apMaterno", null);
+			requestMap.put("estadoAlumno", null);
+			requestMap.put("seccion", null);
+			requestMap.put("idGrado", null);
+			requestMap.put("anio", null);
+			List<ListUsuarioOutputDto> listUsuario = usuarioMapper.listAlumMatriula(requestMap);
+			listUsuario.stream().forEach(e -> {
+				List<GradoOutputDto> listGrado = gradoService.list(null, e.getIdGrado());
+				listGrado.stream().forEach(g -> {
+					g.setHorarios(horarioMapper.list(g.getIdCurso()));
+				});
+				e.setCursoDocentes(listGrado);
+			});
+			String html = "";
+			HashMap<String, Object> context = new HashMap<String, Object>();
+			context.put("listaReporte", listUsuario);
+			TemplateEngineService templateEngine = new TemplateEngineService();
+			html += templateEngine.processTemplate("pdf/ReporteMatricula.html", context);
+			String base64Content = PdfGenerator.pdfBase64FromHtmString(html);
+			System.out.println("Enviar a front base64Content: " + base64Content);
+			context = new HashMap<String, Object>();
+			context.put("resp", base64Content);
+			return context;
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	private  ListUsuarioOutputDto listCurso(ListUsuarioOutputDto dto) {
+		List<GradoOutputDto> listGrado = gradoService.list(null, dto.getIdGrado());
+		listGrado.stream().forEach(g -> {
+			g.setHorarios(horarioMapper.list(g.getIdCurso()));
+		});
+		dto.setCursoDocentes(listGrado);
+	return dto;
+}
 }

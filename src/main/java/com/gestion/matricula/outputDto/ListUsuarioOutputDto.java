@@ -50,4 +50,11 @@ public class ListUsuarioOutputDto implements Serializable{
 	private String desCurso;
 	private Time horas;
 	private Integer anio;
+	
+	private Integer idGrado;
+	private String nivel;
+	private String fchMatricula;
+	private String nomGrado;
+	private String seccion;
+	private List<GradoOutputDto> cursoDocentes;
 }

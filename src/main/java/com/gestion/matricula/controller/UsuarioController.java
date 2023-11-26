@@ -88,4 +88,15 @@ public class UsuarioController {
 		}
 	}
 	
+	@PostMapping("/generateReporteMatriculaPdf")
+	public ResponseEntity<ApiResponse> generateReporteMatriculaPdf(String codPerfil, String nroDni) {
+		try {
+			return ResponseEntity.ok(
+					ApiResponse.ok(Constant.MSJ_EXITO, usuarioService.generateReporteMatriculaPdf(codPerfil, nroDni)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.ok(ApiResponse.ok(e.getMessage(), HttpStatus.BAD_REQUEST));
+		}
+	}
+	
 }

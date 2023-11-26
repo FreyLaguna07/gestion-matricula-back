@@ -10,12 +10,28 @@
 		<result property="estado" column="estado" />
 		<result property="fchCreacion" column="fch_creacion" />
 		<result property="fchActualizacion" column="fch_actualizacion" />
+		
+		<result property="idCurso" column="id_curso" />
+		<result property="nomCurso" column="nom_curso" />
+		<result property="codCurso" column="cod_curso" />
+		<result property="horas" column="horas" />
+		<result property="fchCreacionCurso" column="fch_creacion_curso" />
+		<result property="fchActualizacionCurso" column="fch_actualizacion_curso" />
+		<result property="idUsuario" column="id_usuario" />
+		<result property="nomUsuario" column="nom_usuario" />
+		<result property="apPaterno" column="ap_paterno" />
+		<result property="apMaterno" column="ap_materno" />
+		<result property="nroDni" column="nro_dni" />
+		<result property="fchNacimiento" column="fch_nacimiento" />
+		<result property="sexo" column="sexo" />
+		
 	</resultMap>
 	
 	<select id="list" statementType="CALLABLE" 
 			resultMap="listGrado" >
 		{ CALL sp_tb_grado_list(
-			#{nivel, jdbcType = VARCHAR, mode = IN}
+			#{nivel, jdbcType = VARCHAR, mode = IN},
+			#{idGrado, jdbcType = INTEGER, mode = IN}
 			)
 		}
 	</select>

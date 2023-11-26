@@ -65,6 +65,18 @@
 	      <version>2.0.3</version>
 	   </dependency>
 
+		<!--prar usar templates de html prar generar pdf o enviar correos-->
+		<dependency>
+		    <groupId>org.thymeleaf</groupId>
+		    <artifactId>thymeleaf</artifactId>
+		    <version>3.1.2.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>html2pdf</artifactId>
+		    <version>5.0.1</version>
+		</dependency>
+
 		
 	</dependencies>
 

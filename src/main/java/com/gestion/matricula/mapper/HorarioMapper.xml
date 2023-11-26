@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gestion.matricula.mapper.HorarioMapper">
+
+	<resultMap id="listGrado" type="com.gestion.matricula.outputDto.HorarioOutputDto">
+		<result property="idCurso" column="id_curso" />
+		<result property="idHorario" column="id_horario" />
+		<result property="dia" column="dia" />
+		<result property="horaInicio" column="hora_inicio" />
+		<result property="horaFin" column="hora_fin" />
+		
+	</resultMap>
+	
+	<select id="list" statementType="CALLABLE" 
+			resultMap="listGrado" >
+		{ CALL sp_tb_horario_list(
+			#{idCurso, jdbcType = INTEGER, mode = IN}
+			)
+		}
+	</select>
+</mapper>

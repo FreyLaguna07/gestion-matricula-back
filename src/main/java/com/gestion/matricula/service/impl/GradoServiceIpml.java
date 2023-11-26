@@ -1,5 +1,6 @@
 package com.gestion.matricula.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,11 @@ public class GradoServiceIpml implements GradoService{
 	GradoMapper gradoMapper;
 	
 	@Override
-	public List<GradoOutputDto> list(String nivelAcademico){
-		return gradoMapper.list(nivelAcademico);
+	public List<GradoOutputDto> list(String nivelAcademico, Integer idGrado){
+		if(idGrado == 0) idGrado = null;
+		HashMap<Object, Object> search = new HashMap<>();
+		search.put("nivel", nivelAcademico != null ? nivelAcademico : null);
+		search.put("idGrado", idGrado);
+		return gradoMapper.list(search);
 	}
 }

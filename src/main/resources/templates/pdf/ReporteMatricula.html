@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thymeleaf.org">
+<head>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+
+<style>
+@page { //horizontal el pdf //size:landscape;
+	font-size: 5px; @ top-right { content : "Pag." counter( page) " de "
+	counter( pages);
+	font-family: Mulish;
+	padding-right: 15px;
+}
+
+@
+top-left {
+	content: "Institusion Educativa Mártir José Olaya";
+	font-family: Mulish;
+	padding-left: 15px;
+}
+
+}
+#invoice {
+	padding: 0px;
+}
+
+tr, tfoot {
+	page-break-inside: avoid;
+}
+
+table, td, th {
+	/*border: 0px solid;*/
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	font-size: 8px;
+	height: 27px;
+}
+
+table {
+	width: 100%;
+}
+
+#cabeceraTabla {
+	background-color: #BFBFBFD1;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 15px;
+	text-align: center;
+	font-weight: 700;
+}
+
+#imgLogo {
+	width: 50px;
+}
+
+#cabecera {
+	display: flex; //
+	justify-content: center; //
+	align-items: center;
+}
+
+#acronimo {
+	color: #a47e15;
+	font-size: 17px;
+	font-weight: 700;
+	text-decoration: none;
+	line-height: 1em;
+	font-style: italic;
+	font-family: Algerian;
+	align-items: end;
+}
+
+#constanciaMatricula {
+	color: #000000;
+	font-size: 15px;
+	font-weight: 700;
+	text-decoration: none;
+	line-height: 1em;
+	font-style: italic;
+	font-family: Algerian;
+	align-items: end;
+}
+
+#tdCentert {
+	text-align: center;
+}
+
+p {
+	font-size: 14px;
+	text-align: center;
+}
+
+</style>
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-4">
+				&nbsp;<img id="imgLogo"
+					src="src/main/resources/templates/pdf/logo.png">
+				<h2 id="acronimo">I.E.M.J.O</h2>
+			</div>
+
+			<div class="col-4 cabecera">
+				<h2 id="acronimo" class="float-right"></h2>
+			</div>
+
+			<div class="col-4" th:each="reporte: ${listaReporte}">
+				<h2 id="constanciaMatricula"
+					th:text="'CONSTANCIA DE MATRÍCULA I.E.M.J.O - '+${reporte.getAnio()}">
+				</h2>
+			</div>
+
+		</div>
+	</div>
+	<div id="invoice">
+		<h1>Datos Generales del Alumno</h1>
+		<table th:each="reporte: ${listaReporte}">
+			<thead>
+				<tr style="background-color: transparent !important;">
+					<th colspan="5" th:text="'Perfil: '+${reporte.getTipousuario()}"></th>
+					<th th:text="'Nivel: '+${reporte.getNivel()}"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="2" th:text="'ALUMNO (A): '+${reporte.getApPaternoUsuario()} +' '+ ${reporte.getApMaternoUsuario()} +' '+ ${reporte.getNomUsuario()}"></td>
+					<td th:text="'DNI: '+${reporte.getNroDniUsuario()}"></td>
+					<td th:text="'GRADO: '+${reporte.getNomGrado()}"></td>
+					<td th:text="'SECCIÓN: '+${reporte.getSeccion()}"></td>
+					<td th:text="'FCH. MATRICULA: '+${reporte.getFchMatricula()}"></td>
+				</tr>
+				<tr>
+					<td colspan="2" th:text="'APODERADO (A): '+${reporte.getApPaternoApoderado()} +' '+ ${reporte.getApMaternoApoderado()} +' '+ ${reporte.getNomApoderado()}"></td>
+					<td th:text="'DNI: '+${reporte.getNroDniApoderado()}"></td>
+					<td th:text="'NRO. CELULAR: '+${reporte.getTelefonoApooderado()}"></td>
+					<td colspan="2" th:text="'DIRECCIÓN: '+${reporte.getDireccion()}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br><br>
+	<div id="invoice">
+		<h1>Datos Generales de Matricula</h1>
+		<table th:each="reporte: ${listaReporte}">
+			<thead>
+				<tr id="cabeceraTabla">
+					<td style="width: 12px !important; text-align: center">C&otilde;digo</td>
+					<td>Asignatura</td>
+					<td id="tdCentert">Sección</td>
+					<td id="tdCentert">Turno</td>
+					<td>Dia</td>
+					<td id="tdCentert">Inicio</td>
+					<td id="tdCentert">Final</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="reporteDocente: ${reporte.getCursoDocentes()}">
+					<td th:text="${reporteDocente.getCodCurso()}" id="tdCentert"></td>
+					<td>
+						<div> 
+							<span th:text="${reporteDocente.getNomCurso()}"></span><br>
+							<span th:text="'DOCENTE: ' + ${reporteDocente.getApPaterno()} + ' ' + ${reporteDocente.getApMaterno()} + ' ' + ${reporteDocente.getNomUsuario()}" style="font-size: 6px !important;"></span>
+						</div>
+					</td>
+					<td th:text="${reporte.getSeccion()}" id="tdCentert"></td>
+					<td th:text="${reporte.getNivel() == 'PRIMARIA' ? 'MAÑANA' : 'TARDE'}" id="tdCentert"></td>
+					<td >
+						<div th:each="reporteHorarios: ${reporteDocente.getHorarios()}" > 
+							<span th:text="${reporteHorarios.getDia()}" ></span><br>
+						</div>
+					</td>
+					<td  >
+						<div th:each="reporteHorarios: ${reporteDocente.getHorarios()}" id="tdCentert"> 
+							<span th:text="${reporteHorarios.getHoraInicio()}" ></span><br>
+						</div>
+					</td>
+					<td  >
+						<div th:each="reporteHorarios: ${reporteDocente.getHorarios()}" id="tdCentert"> 
+							<span th:text="${reporteHorarios.getHoraFin()}" ></span><br>
+						</div>
+					</td>
+				</tr-->
+			</tbody>
+		</table>
+	</div>
+	<br><br><br><br><br>
+	<div>
+		<span><b style="font-weight: 700;">Nota: </b> Tener en cuenta que el alumno (a) ya se encuentra matriculado en la institución Mártir José Olaya de Musho, 
+				  por lo tanto debe haber cirto compromiso en culminar el año academico responsablemente y acatar las politicas de la institucion.
+		</span>
+	</div >
+	<br><br><br><br><br><br>
+	<div style="line-height: 0px">
+		<p>&nbsp;--------------------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------------------------</p>    
+        <p>Director (a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apoderado (a)  </p>  
+          
+    </div>
+</body>
+</html>
